@@ -1,50 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="layout">
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        aligh-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+      }
 
-    <!-- SIDEBAR -->
-  <h2>Meu Dashboard</h2>
-    <nav>
-      <a>Home</a>
-      <a>CRM</a>
-      <a>Clientes</a>
-      <a>Ajuda</a>
-    </nav>
-  </aside>
-    <!-- CONTEUDO -->
-    <main class="content">
+      .calculadora {
+        background: #1e1e2f;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        width: 260px;
+      }
 
-      <!-- HEADER -->
-      <header class="header">
-        <h1>Bem-vindo ao Portal da Maya</h1>
-      </header>
+      .display {
+        background: #0f0f1a;
+        color: #fff;
+        font-size 2em;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: right;
+        margin-bottom: 15px;
+        overflow-x: auto;
+      }
 
-      <!-- CARDS -->
-      <section class="cards">
-        <div class="card">Categoria</div>
-        <div class="card">Clientes</div>
-        <div class="card">Bônus</div>
-      </section>
+      .botoes {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
 
-      <!-- BANNER -->
-      <section class"banner">
-        <img src="banner.jpg">
-      </section>
+      button {
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: 0.2s;
+      }
 
-      <!-- BOTÕES -->
-      <section class="buttons">
-        <button>Materiais de Marketing</button>
-        <button>Central de ajuda</button>
-        <button>Release Notes</button>
-      </section>
+      button:hover {
+        transform: scale(1.05);
+      }
 
-    </main>
+      .numero {
+        background: #2d2d44;
+        color: #fff;
+      }
 
-  </div>
-</body>
+      .operador {
+        background: #ff9f43;
+        color: #fff;
+      }
+
+      .igual {
+        background: #1dd1a1;
+        color: #fff;
+        grid-column: span 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculadora">
+      <div class="display" id="display">0</div>
+      
+      <div class="botes">
+        <button class="limpar" onclick="limpar()">C</button>
+        <button class="operador onclick="adicionar('/')">÷</button>
+
+        <button class="numero" onclick="adicionar('7')">7</button>
+        <button class="numero" onclick="adicionar('8')">8</button>
+        <button class="numero" onclick="adicionar('9')">9</button>
+        <button class="operador" onclick="adicionar('*')">x</button>
+
+        <button class="numero" onclick="adicionar('4')">4</button>
+        <button class="numero" onclick="adicionar('5')">5</button>
+        <button class="numero" onclick="adicionar('6')">6</button>
+        <button class="operador" onclick="adicionar('-')">-</button>
+
+        <button class="numero" onclick="adicionar('1')">1</button>
+        <button class="numero" onclick="adicionar('2')">2</button>
+        <button class="numero" onclick="adicionar('3')">3</button>
+        <button class="operador" onclick="adicionar('+')">+</button>
+
+        <button class="numero" onclick="adicionar('0')">0</button>
+        <button class="igual" onclick="calcular()">=</button>
+      </div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+
+      function adicionar(valor) {
+        if (display.innerText === "0") {
+          display.innerText = valor;
+        } else {
+          display.innerText += valor;
+        }
+      }
+
+      function limpar() {
+        display.innerText = "0";
+      }
+
+      function calcular() {
+        try {
+          display.innerText = eval(display.innerText);
+        } catch {
+          display.innerText = "Erro";
+        }
+      }
+    </script>
+    
+  </body>
 </html>
